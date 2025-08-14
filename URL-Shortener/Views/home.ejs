@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home-Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f3e8ff;
+      }
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      input {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        width: 30%;
+        box-sizing: border-box;
+      }
+      button {
+        margin-top: 5px;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 10px;
+        background-color: #b78ce9;
+        color: white;
+        cursor: pointer;
+      }
+
+      h1,
+      h3 {
+        text-align: center;
+        /* margin-top: 50px; */
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: auto;
+      }
+
+      table {
+        margin: 40px auto;
+        border-collapse: collapse;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        min-width: 400px;
+      }
+
+      th,
+      td {
+        padding: 10px 20px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+      }
+
+      thead th {
+        background: #d1aaff;
+      }
+
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px auto 40px auto;
+        box-sizing: border-box;
+        border: 1.5px solid #b78ce9;
+        border-radius: 10px;
+        width: 400px;
+        background: #fff;
+        padding: 24px 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>URL Shortener</h1>
+    <div>
+      <form method="post" action="/url">
+        <label>Enter your Original URL : </label>
+        <input type="text" name="url" placeholder="https://example.com" />
+        <button type="submit">Shorten URL</button>
+      </form>
+    </div>
+
+    <div class="form-container">
+      <% if (locals.id) { %>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+        "
+      >
+        <h3 id="short-url">
+          Your shortened URL is : http://localhost:8001/url/<%= locals.id %>
+        </h3>
+        <button onclick="copyToClipboard()">Copy</button>
+      </div>
+      <% } %>
+    </div>
+
+    <div>
+      <% if (locals.allURLs) { %>
+      <table>
+        <thead>
+          <th>S.No.</th>
+          <th>Original URL</th>
+          <th>Shortened URL</th>
+          <th>Clicks</th>
+        </thead>
+        <tbody>
+          <% allURLs.forEach((url, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= url.redirectURL %></td>
+            <td><%= url.shortID %></td>
+            <td><%= url.visitHistory.length %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } %>
+    </div>
+
+    <script>
+      function copyToClipboard() {
+        const urlText = document
+          .getElementById("short-url")
+          .textContent.replace("Your shortened URL is : ", "")
+          .trim();
+        navigator.clipboard.writeText(urlText);
+      }
+    </script>
+  </body>
+</html>
