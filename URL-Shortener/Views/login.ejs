@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    <style>
+      .signup-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+      .signup-form label {
+        font-weight: bold;
+        margin-bottom: 8px;
+        margin-top: 12px;
+        color: #6c63ff;
+        align-self: flex-start;
+      }
+      .signup-form input {
+        padding: 10px 14px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        font-size: 1rem;
+        box-sizing: border-box;
+        width: 100%;
+      }
+      .signup-form button {
+        padding: 10px 20px;
+        border-radius: 6px;
+        border: none;
+        background: #6c63ff;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        font-weight: 500;
+        margin-top: 16px;
+        transition: background 0.2s;
+        width: 100%;
+      }
+      .signup-form button:hover {
+        background: #5548c8;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px auto 40px auto;
+        box-sizing: border-box;
+        border: 1.5px solid #b78ce9;
+        border-radius: 10px;
+        width: 400px;
+        background: #fff;
+        padding: 24px 24px;
+      }
+
+      td {
+        padding: 10px 20px;
+        text-align: center;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Create an Account</h1>
+
+      <form class="signup-form" action="/user/login" method="POST">
+    
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit">Log In</button>
+      </form>
+    </div>
+  </body>
+</html>
